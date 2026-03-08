@@ -36,25 +36,5 @@ window.addEventListener("keydown", function(e) {
 	<script src="scripts/offlineclient.js"></script>
 	<script src="scripts/main.js"></script>
 	<script src="scripts/register-sw.js"></script>
-<script>
-    // This script forces the ball to be huge regardless of data.json settings
-    setInterval(function() {
-        if (typeof runtime !== 'undefined') {
-            // "ballLine" is the visual object you were editing
-            const balls = runtime.objects.ballLine.getAllInstances();
-            balls.forEach(b => {
-                b.width = 100;  // Set width (original was ~12)
-                b.height = 100; // Set height
-            });
-            
-            // "heavyBall" is the physics object that actually moves
-            const physicsBalls = runtime.objects.heavyBall.getAllInstances();
-            physicsBalls.forEach(pb => {
-                pb.width = 100;
-                pb.height = 100;
-            });
-        }
-    }, 100); // Checks every 100ms
-</script>
 </body>
 </html>
