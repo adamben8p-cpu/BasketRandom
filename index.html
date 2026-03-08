@@ -36,5 +36,31 @@ window.addEventListener("keydown", function(e) {
 	<script src="scripts/offlineclient.js"></script>
 	<script src="scripts/main.js"></script>
 	<script src="scripts/register-sw.js"></script>
+<script>
+    // This script runs every 0.1 seconds to force your changes
+    setInterval(function() {
+        if (typeof runtime !== 'undefined') {
+            // 1. MAKE ALL BALLS GIANT
+            const ballTypes = ["ballLine", "heavyBall", "smallball", "ball"];
+            ballTypes.forEach(name => {
+                const type = runtime.objects[name];
+                if (type) {
+                    type.getAllInstances().forEach(inst => {
+                        inst.width = 80;  // Normal is ~12
+                        inst.height = 80;
+                    });
+                }
+            });
+
+            // 2. MAKE HOOPS LONG (TALL)
+            const hoops = runtime.objects.basket; // Check if named 'basket' or 'pot'
+            if (hoops) {
+                hoops.getAllInstances().forEach(h => {
+                    h.height = 200; // Stretches the hoop down
+                });
+            }
+        }
+    }, 100);
+</script>
 </body>
 </html>
